@@ -40,6 +40,7 @@ import org.inventivetalent.reflection.resolver.minecraft.NMSClassResolver;
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Iterator;
 
 import static org.inventivetalent.reflection.minecraft.Minecraft.Version.*;
 
@@ -268,6 +269,10 @@ public enum ParticleEffect {
 	 * @param range     Maximum visibility range
 	 */
 	public void send(Collection<? extends Player> receivers, Location location, double offsetX, double offsetY, double offsetZ, double speed, int count, double range) {
+		receivers = new ArrayList<>(receivers);
+		for (Iterator<? extends Player> iterator = receivers.iterator(); iterator.hasNext(); ) {
+			if (!iterator.next().getWorld().getName().equals(location.getWorld().getName())) { iterator.remove(); }
+		}
 		send(receivers, location.getX(), location.getY(), location.getZ(), offsetX, offsetY, offsetZ, speed, count, range);
 	}
 
@@ -300,6 +305,10 @@ public enum ParticleEffect {
 	 * @param count     Particle count
 	 */
 	public void send(Collection<? extends Player> receivers, Location location, double offsetX, double offsetY, double offsetZ, double speed, int count) {
+		receivers = new ArrayList<>(receivers);
+		for (Iterator<? extends Player> iterator = receivers.iterator(); iterator.hasNext(); ) {
+			if (!iterator.next().getWorld().getName().equals(location.getWorld().getName())) { iterator.remove(); }
+		}
 		this.particle.send(receivers, location.getX(), location.getY(), location.getZ(), offsetX, offsetY, offsetZ, speed, count);
 	}
 
