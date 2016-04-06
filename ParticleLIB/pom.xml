@@ -31,12 +31,12 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>org.inventivetalent</groupId>
     <artifactId>particleapi</artifactId>
-    <version>2.0.1</version>
+    <version>2.0.2</version>
     <name>ParticleAPI</name>
 
     <build>
         <finalName>ParticleAPI_v${project.version}</finalName>
-        <sourceDirectory>src</sourceDirectory>
+        <sourceDirectory>src/main/java</sourceDirectory>
         <resources>
             <resource>
                 <directory>src/main/java</directory>
@@ -80,6 +80,12 @@
                                     <include>org.inventivetalent:reflectionhelper**</include>
                                 </includes>
                             </artifactSet>
+                            <relocations>
+                                <relocation>
+                                    <pattern>org.mcstats</pattern>
+                                    <shadedPattern>org.inventivetalent.particle.mcstats</shadedPattern>
+                                </relocation>
+                            </relocations>
                         </configuration>
                     </execution>
                 </executions>
@@ -118,7 +124,7 @@
         <dependency>
             <groupId>org.inventivetalent</groupId>
             <artifactId>reflectionhelper</artifactId>
-            <version>1.1.0</version>
+            <version>[1.4.0,)</version>
         </dependency>
     </dependencies>
 
