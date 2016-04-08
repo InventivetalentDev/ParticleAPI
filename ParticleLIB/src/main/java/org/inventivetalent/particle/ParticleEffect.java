@@ -28,6 +28,7 @@
 
 package org.inventivetalent.particle;
 
+import org.bukkit.Color;
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
@@ -205,9 +206,7 @@ public enum ParticleEffect {
 	}
 
 	/**
-	 * Check if this particle has special {@link org.inventivetalent.particle.ParticleEffect.Feature}s
-	 * - Particles with features cannot use the default send() methods
-	 * - Particles without features cannot use special sendColor or sendData methods
+	 * Check if this particle has special {@link org.inventivetalent.particle.ParticleEffect.Feature}s - Particles with features cannot use the default send() methods - Particles without features cannot use special sendColor or sendData methods
 	 *
 	 * @param feature {@link org.inventivetalent.particle.ParticleEffect.Feature} to check
 	 * @return <code>true</code> if this particle has the feature
@@ -218,9 +217,7 @@ public enum ParticleEffect {
 	}
 
 	/**
-	 * Check if this particle has no {@link org.inventivetalent.particle.ParticleEffect.Feature}s
-	 * - Particles without features cannot use special sendColor or sendData methods
-	 * - Particles with features cannot use the default send() methods
+	 * Check if this particle has no {@link org.inventivetalent.particle.ParticleEffect.Feature}s - Particles without features cannot use special sendColor or sendData methods - Particles with features cannot use the default send() methods
 	 *
 	 * @return <code>true</code> if this particle has no special features
 	 * @see #hasFeature(Feature)
@@ -342,6 +339,20 @@ public enum ParticleEffect {
 	public void sendColor(Collection<? extends Player> receivers, double x, double y, double z, java.awt.Color color) {
 		if (!hasFeature(Feature.COLOR)) { throw new ParticleException("This particle cannot be colored"); }
 		((ColoredParticle) this.particle).send(receivers, x, y, z, color);
+	}
+
+	public void sendColor(Collection<? extends Player> receivers, Location location, Color color) {
+		for (Iterator<? extends Player> iterator = receivers.iterator(); iterator.hasNext(); ) {
+			if (!iterator.next().getWorld().getName().equals(location.getWorld().getName())) { iterator.remove(); }
+		}
+		sendColor(receivers, location.getX(), location.getY(), location.getZ(), color);
+	}
+
+	public void sendColor(Collection<? extends Player> receivers, Location location, java.awt.Color color) {
+		for (Iterator<? extends Player> iterator = receivers.iterator(); iterator.hasNext(); ) {
+			if (!iterator.next().getWorld().getName().equals(location.getWorld().getName())) { iterator.remove(); }
+		}
+		sendColor(receivers, location.getX(), location.getY(), location.getZ(), color);
 	}
 
 	//Data
