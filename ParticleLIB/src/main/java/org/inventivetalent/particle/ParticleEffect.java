@@ -319,7 +319,7 @@ public enum ParticleEffect {
 	 * @param y         Y-Location
 	 * @param z         Z-Location
 	 * @param color     {@link org.bukkit.Color} of the particle
-	 * @throws {@link ParticleException} if this particle cannot have a color
+	 * @throws ParticleException if this particle cannot have a color
 	 */
 	public void sendColor(Collection<? extends Player> receivers, double x, double y, double z, org.bukkit.Color color) {
 		if (!hasFeature(Feature.COLOR)) { throw new ParticleException("This particle cannot be colored"); }
@@ -334,7 +334,7 @@ public enum ParticleEffect {
 	 * @param y         Y-Location
 	 * @param z         Z-Location
 	 * @param color     {@link  java.awt.Color} of the particle
-	 * @throws {@link ParticleException} if this particle cannot have a color
+	 * @throws ParticleException if this particle cannot have a color
 	 */
 	public void sendColor(Collection<? extends Player> receivers, double x, double y, double z, java.awt.Color color) {
 		if (!hasFeature(Feature.COLOR)) { throw new ParticleException("This particle cannot be colored"); }
@@ -371,7 +371,7 @@ public enum ParticleEffect {
 	 * @param count     Particle count
 	 * @param itemId    ID of the item/block
 	 * @param data      Data of the item/block
-	 * @throws {@link ParticleException} if this particle cannot have block or item data
+	 * @throws ParticleException if this particle cannot have block or item data
 	 */
 	public void sendData(Collection<? extends Player> receivers, double x, double y, double z, double offsetX, double offsetY, double offsetZ, double speed, int count, int itemId, byte data) {
 		if (!hasFeature(Feature.DATA)) { throw new ParticleException("This particle cannot have block/item data"); }
@@ -390,8 +390,8 @@ public enum ParticleEffect {
 	 * @param offsetZ   Z-Offset
 	 * @param speed     Particle speed
 	 * @param count     Particle count
-	 * @param itemStack {@link ItemStack} containing the ID&data of the item/block
-	 * @throws {@link ParticleException} if this particle cannot have block or item data
+	 * @param itemStack {@link ItemStack} containing the ID&amp;data of the item/block
+	 * @throws ParticleException if this particle cannot have block or item data
 	 */
 	public void sendData(Collection<? extends Player> receivers, double x, double y, double z, double offsetX, double offsetY, double offsetZ, double speed, int count, ItemStack itemStack) {
 		sendData(receivers, x, y, z, offsetX, offsetY, offsetZ, speed, count, itemStack.getTypeId(), itemStack.getData().getData());
@@ -597,9 +597,13 @@ public enum ParticleEffect {
 			Reflection.PlayerConnectionMethodResolver = new MethodResolver(Reflection.NMS_CLASS_RESOLVER.resolve("PlayerConnection"));
 		}
 
-		Object handle = Minecraft.getHandle(p);
-		final Object connection = Reflection.EntityPlayerFieldResolver.resolve("playerConnection").get(handle);
-		Reflection.PlayerConnectionMethodResolver.resolve("sendPacket").invoke(connection, packet);
+		try {
+			Object handle = Minecraft.getHandle(p);
+			final Object connection = Reflection.EntityPlayerFieldResolver.resolve("playerConnection").get(handle);
+			Reflection.PlayerConnectionMethodResolver.resolve("sendPacket").invoke(connection, packet);
+		} catch (ReflectiveOperationException e) {
+			throw new RuntimeException(e);
+		}
 	}
 
 }
