@@ -220,57 +220,22 @@ public enum ParticleEffect {
 	private static Class<?> nmsEnumParticle;
 	private static int particleRange = 25;
 
-	/**
-	 * Modify the maximum Range of particles (only useful for Client versions 1.8+)
-	 *
-	 * @param range New range
-	 * @deprecated Methods with the 'force' argument should be used
-	 */
 	@Deprecated
 	public static void setRange(int range) {
 		if (range < 0) { throw new IllegalArgumentException("Range must be positive!"); }
 		particleRange = range;
 	}
 
-	/**
-	 * @return The current maximum Range of particles
-	 * @deprecated Methods with the 'force' argument should be used
-	 */
 	@Deprecated
 	public static int getRange() {
 		return particleRange;
 	}
 
-	/**
-	 * Send the particle to a specific Player
-	 *
-	 * @param player   Receiver of the particle
-	 * @param location Location of the particle
-	 * @param offsetX  X size of the area to spawn particles in.
-	 * @param offsetY  Y size of the area to spawn particles in.
-	 * @param offsetZ  Z size of the area to spawn particles in.
-	 * @param speed    Speed of the Particle
-	 * @param count    Number of spawned particles
-	 * @param extra    Extra arguments (block id, data)
-	 */
 	@Deprecated
 	private void sendToPlayer(Player player, Location location, float offsetX, float offsetY, float offsetZ, float speed, int count, int... extra) throws Exception {
 		sendToPlayer(player, location, offsetX, offsetY, offsetZ, speed, count, false, extra);
 	}
 
-	/**
-	 * Send the particle to a specific Player
-	 *
-	 * @param player   Receiver of the particle
-	 * @param location Location of the particle
-	 * @param offsetX  X size of the area to spawn particles in.
-	 * @param offsetY  Y size of the area to spawn particles in.
-	 * @param offsetZ  Z size of the area to spawn particles in.
-	 * @param speed    Speed of the Particle
-	 * @param count    Number of spawned particles
-	 * @param extra    Extra arguments (block id, data)
-	 * @param force    If the distance to the receiving player should be ignored
-	 */
 	private void sendToPlayer(Player player, Location location, float offsetX, float offsetY, float offsetZ, float speed, int count, boolean force, int... extra) throws Exception {
 		if (!force && !isPlayerInRange(player, location)) { return; }
 		if (ReflectionUtilities.getVersion().contains("v1_8")) {
@@ -347,50 +312,15 @@ public enum ParticleEffect {
 		}
 	}
 
-	/**
-	 * Send the particle to a specific Player
-	 *
-	 * @param player   Receiver of the particle
-	 * @param location Location of the particle
-	 * @param offsetX  X size of the area to spawn particles in.
-	 * @param offsetY  Y size of the area to spawn particles in.
-	 * @param offsetZ  Z size of the area to spawn particles in.
-	 * @param speed    Speed of the Particle
-	 * @param count    Number of spawned particles
-	 * @throws Exception
-	 */
 	public void sendToPlayer(Player player, Location location, float offsetX, float offsetY, float offsetZ, float speed, int count, boolean force) throws Exception {
 		this.sendToPlayer(player, location, offsetX, offsetY, offsetZ, speed, count, force, new int[0]);
 	}
 
-	/**
-	 * Send the particle to a specific Player
-	 *
-	 * @param player   Receiver of the particle
-	 * @param location Location of the particle
-	 * @param offsetX  X size of the area to spawn particles in.
-	 * @param offsetY  Y size of the area to spawn particles in.
-	 * @param offsetZ  Z size of the area to spawn particles in.
-	 * @param speed    Speed of the Particle
-	 * @param count    Number of spawned particles
-	 * @throws Exception
-	 */
 	@Deprecated
 	public void sendToPlayer(Player player, Location location, float offsetX, float offsetY, float offsetZ, float speed, int count) throws Exception {
 		this.sendToPlayer(player, location, offsetX, offsetY, offsetZ, speed, count, false);
 	}
 
-	/**
-	 * Send the particle to a Collection of Players {@link #sendToPlayer(Player, Location, float, float, float, float, int)}
-	 *
-	 * @param player   Receiver of the particle
-	 * @param location Location of the particle
-	 * @param offsetX  X size of the area to spawn particles in.
-	 * @param offsetY  Y size of the area to spawn particles in.
-	 * @param offsetZ  Z size of the area to spawn particles in.
-	 * @param speed    Speed of the Particle
-	 * @param count    Number of spawned particles
-	 */
 	@Deprecated
 	public void sendToPlayers(Collection<? extends Player> players, Location location, float offsetX, float offsetY, float offsetZ, float speed, int count) throws Exception {
 		for (Player p : players) {
@@ -398,34 +328,12 @@ public enum ParticleEffect {
 		}
 	}
 
-	/**
-	 * Send the particle to a Collection of Players {@link #sendToPlayer(Player, Location, float, float, float, float, int)}
-	 *
-	 * @param player   Receiver of the particle
-	 * @param location Location of the particle
-	 * @param offsetX  X size of the area to spawn particles in.
-	 * @param offsetY  Y size of the area to spawn particles in.
-	 * @param offsetZ  Z size of the area to spawn particles in.
-	 * @param speed    Speed of the Particle
-	 * @param count    Number of spawned particles
-	 */
 	public void sendToPlayers(Collection<? extends Player> players, Location location, float offsetX, float offsetY, float offsetZ, float speed, int count, boolean force) throws Exception {
 		for (Player p : players) {
 			this.sendToPlayer(p, location, offsetX, offsetY, offsetZ, speed, count, force);
 		}
 	}
 
-	/**
-	 * Send the particle to an Array of Players {@link #sendToPlayer(Player, Location, float, float, float, float, int)}
-	 *
-	 * @param player   Receiver of the particle
-	 * @param location Location of the particle
-	 * @param offsetX  X size of the area to spawn particles in.
-	 * @param offsetY  Y size of the area to spawn particles in.
-	 * @param offsetZ  Z size of the area to spawn particles in.
-	 * @param speed    Speed of the Particle
-	 * @param count    Number of spawned particles
-	 */
 	@Deprecated
 	public void sendToPlayers(Player[] players, Location location, float offsetX, float offsetY, float offsetZ, float speed, int count) throws Exception {
 		for (Player p : players) {
@@ -435,73 +343,28 @@ public enum ParticleEffect {
 
 	// Color methods
 
-	/**
-	 * Send the particle to a player with the specified color (e.g. reddust)
-	 *
-	 * @param player   Receiver of the particle
-	 * @param location Location of the particle
-	 * @param color    Color of the particle
-	 * @param speed    Speed of the Particle
-	 * @param count    Number of spawned particles
-	 */
 	@Deprecated
 	public void sendColor(Player p, Location location, org.bukkit.Color color) throws Exception {
 		if (!this.hasColor) { return; }
 		this.sendToPlayer(p, location, this.getColor(color.getRed()), this.getColor(color.getGreen()), this.getColor(color.getBlue()), 1, 0);
 	}
 
-	/**
-	 * Send the particle to a player with the specified color (e.g. reddust)
-	 *
-	 * @param player   Receiver of the particle
-	 * @param location Location of the particle
-	 * @param color    Color of the particle
-	 * @param speed    Speed of the Particle
-	 * @param count    Number of spawned particles
-	 */
 	public void sendColor(Player p, Location location, org.bukkit.Color color, boolean force) throws Exception {
 		if (!this.hasColor) { return; }
 		this.sendToPlayer(p, location, this.getColor(color.getRed()), this.getColor(color.getGreen()), this.getColor(color.getBlue()), 1, 0, force);
 	}
 
-	/**
-	 * Send the particle to a player with the specified color (e.g. reddust)
-	 *
-	 * @param player   Receiver of the particle
-	 * @param location Location of the particle
-	 * @param color    Color of the particle
-	 * @param speed    Speed of the Particle
-	 * @param count    Number of spawned particles
-	 */
 	@Deprecated
 	public void sendColor(Player p, Location location, java.awt.Color color) throws Exception {
 		if (!this.hasColor) { return; }
 		this.sendToPlayer(p, location, this.getColor(color.getRed()), this.getColor(color.getGreen()), this.getColor(color.getBlue()), 1, 0);
 	}
 
-	/**
-	 * Send the particle to a player with the specified color (e.g. reddust)
-	 *
-	 * @param player   Receiver of the particle
-	 * @param location Location of the particle
-	 * @param color    Color of the particle
-	 * @param speed    Speed of the Particle
-	 * @param count    Number of spawned particles
-	 */
 	public void sendColor(Player p, Location location, java.awt.Color color, boolean force) throws Exception {
 		if (!this.hasColor) { return; }
 		this.sendToPlayer(p, location, this.getColor(color.getRed()), this.getColor(color.getGreen()), this.getColor(color.getBlue()), 1, 0, force);
 	}
 
-	/**
-	 * Send the particle to a Collection of Players {@link #sendToPlayer(Player, Location, float, float, float, float, int)}
-	 *
-	 * @param player   Receiver of the particle
-	 * @param location Location of the particle
-	 * @param color    Color of the particle
-	 * @param speed    Speed of the Particle
-	 * @param count    Number of spawned particles
-	 */
 	@Deprecated
 	public void sendColor(Collection<? extends Player> players, Location location, java.awt.Color color) throws Exception {
 		if (!this.hasColor) { return; }
@@ -510,15 +373,6 @@ public enum ParticleEffect {
 		}
 	}
 
-	/**
-	 * Send the particle to a Collection of Players {@link #sendToPlayer(Player, Location, float, float, float, float, int)}
-	 *
-	 * @param player   Receiver of the particle
-	 * @param location Location of the particle
-	 * @param color    Color of the particle
-	 * @param speed    Speed of the Particle
-	 * @param count    Number of spawned particles
-	 */
 	public void sendColor(Collection<? extends Player> players, Location location, java.awt.Color color, boolean force) throws Exception {
 		if (!this.hasColor) { return; }
 		for (Player p : players) {
@@ -526,15 +380,6 @@ public enum ParticleEffect {
 		}
 	}
 
-	/**
-	 * Send the particle to a Collection of Players {@link #sendToPlayer(Player, Location, float, float, float, float, int)}
-	 *
-	 * @param player   Receiver of the particle
-	 * @param location Location of the particle
-	 * @param color    Color of the particle
-	 * @param speed    Speed of the Particle
-	 * @param count    Number of spawned particles
-	 */
 	public void sendColor(Collection<? extends Player> players, Location location, org.bukkit.Color color) throws Exception {
 		if (!this.hasColor) { return; }
 		for (Player p : players) {
@@ -542,15 +387,6 @@ public enum ParticleEffect {
 		}
 	}
 
-	/**
-	 * Send the particle to a Collection of Players {@link #sendToPlayer(Player, Location, float, float, float, float, int)}
-	 *
-	 * @param player   Receiver of the particle
-	 * @param location Location of the particle
-	 * @param color    Color of the particle
-	 * @param speed    Speed of the Particle
-	 * @param count    Number of spawned particles
-	 */
 	@Deprecated
 	public void sendColor(Collection<? extends Player> players, Location location, org.bukkit.Color color, boolean force) throws Exception {
 		if (!this.hasColor) { return; }
@@ -559,15 +395,6 @@ public enum ParticleEffect {
 		}
 	}
 
-	/**
-	 * Send the particle to an Array of Players {@link #sendToPlayer(Player, Location, float, float, float, float, int)}
-	 *
-	 * @param player   Receiver of the particle
-	 * @param location Location of the particle
-	 * @param color    Color of the particle
-	 * @param speed    Speed of the Particle
-	 * @param count    Number of spawned particles
-	 */
 	@Deprecated
 	public void sendColor(Player[] players, Location location, org.bukkit.Color color) throws Exception {
 		if (!this.hasColor) { return; }
@@ -576,15 +403,6 @@ public enum ParticleEffect {
 		}
 	}
 
-	/**
-	 * Send the particle to an Array of Players {@link #sendToPlayer(Player, Location, float, float, float, float, int)}
-	 *
-	 * @param player   Receiver of the particle
-	 * @param location Location of the particle
-	 * @param color    Color of the particle
-	 * @param speed    Speed of the Particle
-	 * @param count    Number of spawned particles
-	 */
 	@Deprecated
 	public void sendColor(Player[] players, Location location, java.awt.Color color) throws Exception {
 		if (!this.hasColor) { return; }
@@ -602,59 +420,17 @@ public enum ParticleEffect {
 
 	// BLOCK_CRACK
 
-	/**
-	 * Send the BLOCK_BREAK particle
-	 *
-	 * @param player   Receiver of the particle
-	 * @param location Location of the particle
-	 * @param id       Block id
-	 * @param data     Block data
-	 * @param offsetX  X size of the area to spawn particles in.
-	 * @param offsetY  Y size of the area to spawn particles in.
-	 * @param offsetZ  Z size of the area to spawn particles in.
-	 * @param speed    Speed of the Particle
-	 * @param count    Number of spawned particles
-	 * @throws Exception
-	 */
 	@Deprecated
 	public void sendBlockCrack(Player player, Location location, int id, byte data, float offsetX, float offsetY, float offsetZ, float speed, int count) throws Exception {
 		if (this != BLOCK_CRACK) { throw new IllegalArgumentException("This method is only available for BLOCK_CRACK!"); }
 		this.sendToPlayer(player, location, offsetX, offsetY, offsetZ, speed, count, id, data);
 	}
 
-	/**
-	 * Send the BLOCK_BREAK particle
-	 *
-	 * @param player   Receiver of the particle
-	 * @param location Location of the particle
-	 * @param id       Block id
-	 * @param data     Block data
-	 * @param offsetX  X size of the area to spawn particles in.
-	 * @param offsetY  Y size of the area to spawn particles in.
-	 * @param offsetZ  Z size of the area to spawn particles in.
-	 * @param speed    Speed of the Particle
-	 * @param count    Number of spawned particles
-	 * @throws Exception
-	 */
 	public void sendBlockCrack(Player player, Location location, int id, byte data, float offsetX, float offsetY, float offsetZ, float speed, int count, boolean force) throws Exception {
 		if (this != BLOCK_CRACK) { throw new IllegalArgumentException("This method is only available for BLOCK_CRACK!"); }
 		this.sendToPlayer(player, location, offsetX, offsetY, offsetZ, speed, count, force, id, data);
 	}
 
-	/**
-	 * Send the BLOCK_BREAK particle
-	 *
-	 * @param player   Receiver of the particle
-	 * @param location Location of the particle
-	 * @param id       Block id
-	 * @param data     Block data
-	 * @param offsetX  X size of the area to spawn particles in.
-	 * @param offsetY  Y size of the area to spawn particles in.
-	 * @param offsetZ  Z size of the area to spawn particles in.
-	 * @param speed    Speed of the Particle
-	 * @param count    Number of spawned particles
-	 * @throws Exception
-	 */
 	@Deprecated
 	public void sendBlockCrack(Collection<? extends Player> players, Location location, int id, byte data, float offsetX, float offsetY, float offsetZ, float speed, int count) throws Exception {
 		if (this != BLOCK_CRACK) { throw new IllegalArgumentException("This method is only available for BLOCK_CRACK!"); }
@@ -663,20 +439,6 @@ public enum ParticleEffect {
 		}
 	}
 
-	/**
-	 * Send the BLOCK_BREAK particle
-	 *
-	 * @param player   Receiver of the particle
-	 * @param location Location of the particle
-	 * @param id       Block id
-	 * @param data     Block data
-	 * @param offsetX  X size of the area to spawn particles in.
-	 * @param offsetY  Y size of the area to spawn particles in.
-	 * @param offsetZ  Z size of the area to spawn particles in.
-	 * @param speed    Speed of the Particle
-	 * @param count    Number of spawned particles
-	 * @throws Exception
-	 */
 	public void sendBlockCrack(Collection<? extends Player> players, Location location, int id, byte data, float offsetX, float offsetY, float offsetZ, float speed, int count, boolean force) throws Exception {
 		if (this != BLOCK_CRACK) { throw new IllegalArgumentException("This method is only available for BLOCK_CRACK!"); }
 		for (Player p : players) {
@@ -684,20 +446,6 @@ public enum ParticleEffect {
 		}
 	}
 
-	/**
-	 * Send the BLOCK_BREAK particle
-	 *
-	 * @param player   Receiver of the particle
-	 * @param location Location of the particle
-	 * @param id       Block id
-	 * @param data     Block data
-	 * @param offsetX  X size of the area to spawn particles in.
-	 * @param offsetY  Y size of the area to spawn particles in.
-	 * @param offsetZ  Z size of the area to spawn particles in.
-	 * @param speed    Speed of the Particle
-	 * @param count    Number of spawned particles
-	 * @throws Exception
-	 */
 	@Deprecated
 	public void sendBlockCrack(Player[] players, Location location, int id, byte data, float offsetX, float offsetY, float offsetZ, float speed, int count) throws Exception {
 		if (this != BLOCK_CRACK) { throw new IllegalArgumentException("This method is only available for BLOCK_CRACK!"); }
@@ -708,59 +456,17 @@ public enum ParticleEffect {
 
 	// ITEM_CRACK
 
-	/**
-	 * Send the ITEM_CRACK particle
-	 *
-	 * @param player   Receiver of the particle
-	 * @param location Location of the particle
-	 * @param id       Block id
-	 * @param data     Block data
-	 * @param offsetX  X size of the area to spawn particles in.
-	 * @param offsetY  Y size of the area to spawn particles in.
-	 * @param offsetZ  Z size of the area to spawn particles in.
-	 * @param speed    Speed of the Particle
-	 * @param count    Number of spawned particles
-	 * @throws Exception
-	 */
 	@Deprecated
 	public void sendItemCrack(Player player, Location location, int id, byte data, float offsetX, float offsetY, float offsetZ, float speed, int count) throws Exception {
 		if (this != ITEM_CRACK) { throw new IllegalArgumentException("This method is only available for ITEM_CRACK!"); }
 		this.sendToPlayer(player, location, offsetX, offsetY, offsetZ, speed, count, id, data);
 	}
 
-	/**
-	 * Send the ITEM_CRACK particle
-	 *
-	 * @param player   Receiver of the particle
-	 * @param location Location of the particle
-	 * @param id       Block id
-	 * @param data     Block data
-	 * @param offsetX  X size of the area to spawn particles in.
-	 * @param offsetY  Y size of the area to spawn particles in.
-	 * @param offsetZ  Z size of the area to spawn particles in.
-	 * @param speed    Speed of the Particle
-	 * @param count    Number of spawned particles
-	 * @throws Exception
-	 */
 	public void sendItemCrack(Player player, Location location, int id, byte data, float offsetX, float offsetY, float offsetZ, float speed, int count, boolean force) throws Exception {
 		if (this != ITEM_CRACK) { throw new IllegalArgumentException("This method is only available for ITEM_CRACK!"); }
 		this.sendToPlayer(player, location, offsetX, offsetY, offsetZ, speed, count, force, id, data);
 	}
 
-	/**
-	 * Send the ITEM_CRACK particle
-	 *
-	 * @param player   Receiver of the particle
-	 * @param location Location of the particle
-	 * @param id       Block id
-	 * @param data     Block data
-	 * @param offsetX  X size of the area to spawn particles in.
-	 * @param offsetY  Y size of the area to spawn particles in.
-	 * @param offsetZ  Z size of the area to spawn particles in.
-	 * @param speed    Speed of the Particle
-	 * @param count    Number of spawned particles
-	 * @throws Exception
-	 */
 	@Deprecated
 	public void sendItemCrack(Collection<? extends Player> players, Location location, int id, byte data, float offsetX, float offsetY, float offsetZ, float speed, int count) throws Exception {
 		if (this != ITEM_CRACK) { throw new IllegalArgumentException("This method is only available for ITEM_CRACK!"); }
@@ -769,20 +475,6 @@ public enum ParticleEffect {
 		}
 	}
 
-	/**
-	 * Send the ITEM_CRACK particle
-	 *
-	 * @param player   Receiver of the particle
-	 * @param location Location of the particle
-	 * @param id       Block id
-	 * @param data     Block data
-	 * @param offsetX  X size of the area to spawn particles in.
-	 * @param offsetY  Y size of the area to spawn particles in.
-	 * @param offsetZ  Z size of the area to spawn particles in.
-	 * @param speed    Speed of the Particle
-	 * @param count    Number of spawned particles
-	 * @throws Exception
-	 */
 	public void sendItemCrack(Collection<? extends Player> players, Location location, int id, byte data, float offsetX, float offsetY, float offsetZ, float speed, int count, boolean force) throws Exception {
 		if (this != ITEM_CRACK) { throw new IllegalArgumentException("This method is only available for ITEM_CRACK!"); }
 		for (Player p : players) {
@@ -790,20 +482,6 @@ public enum ParticleEffect {
 		}
 	}
 
-	/**
-	 * Send the ITEM_CRACK particle
-	 *
-	 * @param player   Receiver of the particle
-	 * @param location Location of the particle
-	 * @param id       Block id
-	 * @param data     Block data
-	 * @param offsetX  X size of the area to spawn particles in.
-	 * @param offsetY  Y size of the area to spawn particles in.
-	 * @param offsetZ  Z size of the area to spawn particles in.
-	 * @param speed    Speed of the Particle
-	 * @param count    Number of spawned particles
-	 * @throws Exception
-	 */
 	@Deprecated
 	public void sendItemCrack(Player[] players, Location location, int id, byte data, float offsetX, float offsetY, float offsetZ, float speed, int count) throws Exception {
 		if (this != ITEM_CRACK) { throw new IllegalArgumentException("This method is only available for ITEM_CRACK!"); }
@@ -814,56 +492,17 @@ public enum ParticleEffect {
 
 	// BLOCK_DUST
 
-	/**
-	 * Send the BLOCK_DUST particle
-	 *
-	 * @param player   Receiver of the particle
-	 * @param location Location of the particle
-	 * @param id       Block id
-	 * @param offsetX  X size of the area to spawn particles in.
-	 * @param offsetY  Y size of the area to spawn particles in.
-	 * @param offsetZ  Z size of the area to spawn particles in.
-	 * @param speed    Speed of the Particle
-	 * @param count    Number of spawned particles
-	 * @throws Exception
-	 */
 	@Deprecated
 	public void sendBlockDust(Player p, Location location, int id, float offsetX, float offsetY, float offsetZ, float speed, int count) throws Exception {
 		if (this != BLOCK_DUST) { throw new IllegalArgumentException("This method is only available for BLOCK_DUST!"); }
 		this.sendToPlayer(p, location, offsetX, offsetY, offsetZ, speed, count, id);
 	}
 
-	/**
-	 * Send the BLOCK_DUST particle
-	 *
-	 * @param player   Receiver of the particle
-	 * @param location Location of the particle
-	 * @param id       Block id
-	 * @param offsetX  X size of the area to spawn particles in.
-	 * @param offsetY  Y size of the area to spawn particles in.
-	 * @param offsetZ  Z size of the area to spawn particles in.
-	 * @param speed    Speed of the Particle
-	 * @param count    Number of spawned particles
-	 * @throws Exception
-	 */
 	public void sendBlockDust(Player p, Location location, int id, float offsetX, float offsetY, float offsetZ, float speed, int count, boolean force) throws Exception {
 		if (this != BLOCK_DUST) { throw new IllegalArgumentException("This method is only available for BLOCK_DUST!"); }
 		this.sendToPlayer(p, location, offsetX, offsetY, offsetZ, speed, count, force, id);
 	}
 
-	/**
-	 * Send the BLOCK_DUST particle
-	 *
-	 * @param player   Receiver of the particle
-	 * @param location Location of the particle
-	 * @param id       Block id
-	 * @param offsetX  X size of the area to spawn particles in.
-	 * @param offsetY  Y size of the area to spawn particles in.
-	 * @param offsetZ  Z size of the area to spawn particles in.
-	 * @param speed    Speed of the Particle
-	 * @param count    Number of spawned particles
-	 * @throws Exception
-	 */
 	@Deprecated
 	public void sendBlockDust(Collection<? extends Player> players, Location location, int id, float offsetX, float offsetY, float offsetZ, float speed, int count) throws Exception {
 		if (this != BLOCK_DUST) { throw new IllegalArgumentException("This method is only available for BLOCK_DUST!"); }
@@ -872,19 +511,6 @@ public enum ParticleEffect {
 		}
 	}
 
-	/**
-	 * Send the BLOCK_DUST particle
-	 *
-	 * @param player   Receiver of the particle
-	 * @param location Location of the particle
-	 * @param id       Block id
-	 * @param offsetX  X size of the area to spawn particles in.
-	 * @param offsetY  Y size of the area to spawn particles in.
-	 * @param offsetZ  Z size of the area to spawn particles in.
-	 * @param speed    Speed of the Particle
-	 * @param count    Number of spawned particles
-	 * @throws Exception
-	 */
 	public void sendBlockDust(Collection<? extends Player> players, Location location, int id, float offsetX, float offsetY, float offsetZ, float speed, int count, boolean force) throws Exception {
 		if (this != BLOCK_DUST) { throw new IllegalArgumentException("This method is only available for BLOCK_DUST!"); }
 		for (Player p : players) {
@@ -892,19 +518,6 @@ public enum ParticleEffect {
 		}
 	}
 
-	/**
-	 * Send the BLOCK_DUST particle
-	 *
-	 * @param player   Receiver of the particle
-	 * @param location Location of the particle
-	 * @param id       Block id
-	 * @param offsetX  X size of the area to spawn particles in.
-	 * @param offsetY  Y size of the area to spawn particles in.
-	 * @param offsetZ  Z size of the area to spawn particles in.
-	 * @param speed    Speed of the Particle
-	 * @param count    Number of spawned particles
-	 * @throws Exception
-	 */
 	@Deprecated
 	public void sendBlockDust(Player[] players, Location location, int id, float offsetX, float offsetY, float offsetZ, float speed, int count) throws Exception {
 		if (this != BLOCK_DUST) { throw new IllegalArgumentException("This method is only available for BLOCK_DUST!"); }
@@ -992,28 +605,12 @@ public enum ParticleEffect {
 
 	public static class ReflectionUtilities {
 
-		/**
-		 * sets a value of an {@link Object} via reflection
-		 *
-		 * @param instance  instance the class to use
-		 * @param fieldName the name of the {@link Field} to modify
-		 * @param value     the value to set
-		 * @throws Exception
-		 */
 		public static void setValue(Object instance, String fieldName, Object value) throws Exception {
 			Field field = instance.getClass().getDeclaredField(fieldName);
 			field.setAccessible(true);
 			field.set(instance, value);
 		}
 
-		/**
-		 * get a value of an {@link Object}'s {@link Field}
-		 *
-		 * @param instance  the target {@link Object}
-		 * @param fieldName name of the {@link Field}
-		 * @return the value of {@link Object} instance's {@link Field} with the name of fieldName
-		 * @throws Exception
-		 */
 		public static Object getValue(Object instance, String fieldName) throws Exception {
 			Field field = instance.getClass().getDeclaredField(fieldName);
 			field.setAccessible(true);
