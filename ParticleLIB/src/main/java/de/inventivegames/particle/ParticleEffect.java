@@ -37,7 +37,7 @@ import java.lang.reflect.Method;
 import java.util.Collection;
 
 /**
- * @deprecated Please use {@link org.inventivetalent.particle.ParticleEffect} to get support for 1.9+ Particles
+ * @deprecated Please use  org.inventivetalent.particle.ParticleEffect to get support for 1.9+ Particles
  */
 @Deprecated
 public enum ParticleEffect {
@@ -65,26 +65,26 @@ public enum ParticleEffect {
 	HAPPY_VILLAGER("happyVillager", "VILLAGER_HAPPY"),
 	// == 1.8 Particles and Supported 1.7 Particles ==
 	/**
-	 * @see {@link #EXPLODE}
+	 * @see #EXPLODE
 	 */
 	EXPLOSION_NORMAL(EXPLODE.getName()),
 	/**
-	 * @see {@link #LARGE_EXPLODE}
+	 * @see #LARGE_EXPLODE
 	 */
 	EXPLOSION_LARGE(LARGE_EXPLODE.getName()),
 	/**
 	 * 1.8 only!
 	 *
-	 * @see {@link #HUGE_EXPLOSION}
+	 * @see #HUGE_EXPLOSION
 	 */
 	EXPLOSION_HUGE(HUGE_EXPLOSION.getName()),
 	FIREWORKS_SPARK("fireworksSpark"),
 	/**
-	 * @see {@link #BUBBLE}
+	 * @see #BUBBLE
 	 */
 	WATER_BUBBLE(BUBBLE.getName()),
 	/**
-	 * @see {@link #SPLASH}
+	 * @see #SPLASH
 	 */
 	WATER_SPLASH(SPLASH.getName()),
 	/**
@@ -92,16 +92,16 @@ public enum ParticleEffect {
 	 */
 	WATER_WAKE("wake"),
 	/**
-	 * @see {@link #SUSPEND}
+	 * @see #SUSPEND
 	 */
 	SUSPENDED(SUSPEND.getName()),
 	/**
-	 * @see {@link #DEPTH_SUSPEND}
+	 * @see #DEPTH_SUSPEND
 	 */
 	SUSPENDED_DEPTH(DEPTH_SUSPEND.getName()),
 	CRIT("crit"),
 	/**
-	 * @see {@link #MAGIC_CRIT}
+	 * @see #MAGIC_CRIT
 	 */
 	CRIT_MAGIC(MAGIC_CRIT.getName()),
 	/**
@@ -109,36 +109,36 @@ public enum ParticleEffect {
 	 */
 	SMOKE_NORMAL("smoke"),
 	/**
-	 * @see {@link #LARGE_SMOKE}
+	 * @see #LARGE_SMOKE
 	 */
 	SMOKE_LARGE(LARGE_SMOKE.getName()),
 	SPELL("spell"),
 	/**
-	 * @see {@link #INSTANT_SPELL}
+	 * @see #INSTANT_SPELL
 	 */
 	SPELL_INSTANT(INSTANT_SPELL.getName()),
 	/**
 	 * - Colored
 	 *
-	 * @see {@link #MOB_SPELL}
+	 * @see #MOB_SPELL
 	 */
 	SPELL_MOB(MOB_SPELL.getName(), true),
 	/**
-	 * @see {@link #MOB_SPELL_AMBIENT}
+	 * @see #MOB_SPELL_AMBIENT
 	 */
 	SPELL_MOB_AMBIENT(MOB_SPELL_AMBIENT.getName()),
 	/**
-	 * @see {@link #WITCH_MAGIC}
+	 * @see #WITCH_MAGIC
 	 */
 	SPELL_WITCH(WITCH_MAGIC.getName()),
 	DRIP_WATER("dripWater"),
 	DRIP_LAVA("dripLava"),
 	/**
-	 * @see {@link #ANGRY_VILLAGER}
+	 * @see #ANGRY_VILLAGER
 	 */
 	VILLAGER_ANGRY(ANGRY_VILLAGER.getName()),
 	/**
-	 * @see {@link #HAPPY_VILLAGER}
+	 * @see #HAPPY_VILLAGER
 	 */
 	VILLAGER_HAPPY(HAPPY_VILLAGER.getName()),
 	TOWN_AURA("townaura"),
@@ -186,8 +186,8 @@ public enum ParticleEffect {
 	 */
 	MOB_APPEARANCE("mobappearance");
 
-	private String particleName;
-	private String enumValue;
+	private String  particleName;
+	private String  enumValue;
 	private boolean hasColor;
 
 	ParticleEffect(String particleName, String enumValue, boolean hasColor) {
@@ -579,8 +579,8 @@ public enum ParticleEffect {
 	}
 
 	@SuppressWarnings({
-			"unchecked",
-			"rawtypes" })
+							  "unchecked",
+							  "rawtypes" })
 	private static Enum<?> getEnum(String enumFullName) {
 		String[] x = enumFullName.split("\\.(?=[^\\.]+$)");
 		if (x.length == 2) {
