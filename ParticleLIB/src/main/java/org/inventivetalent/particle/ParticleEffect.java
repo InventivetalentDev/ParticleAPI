@@ -342,6 +342,7 @@ public enum ParticleEffect {
 	}
 
 	public void sendColor(Collection<? extends Player> receivers, Location location, Color color) {
+		receivers = new ArrayList<>(receivers);
 		for (Iterator<? extends Player> iterator = receivers.iterator(); iterator.hasNext(); ) {
 			if (!iterator.next().getWorld().getName().equals(location.getWorld().getName())) { iterator.remove(); }
 		}
@@ -349,6 +350,7 @@ public enum ParticleEffect {
 	}
 
 	public void sendColor(Collection<? extends Player> receivers, Location location, java.awt.Color color) {
+		receivers = new ArrayList<>(receivers);
 		for (Iterator<? extends Player> iterator = receivers.iterator(); iterator.hasNext(); ) {
 			if (!iterator.next().getWorld().getName().equals(location.getWorld().getName())) { iterator.remove(); }
 		}
