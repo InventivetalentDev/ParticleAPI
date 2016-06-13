@@ -161,7 +161,8 @@ public enum ParticleEffect {
 	DRAGON_BREATH("dragonbreath", v1_9_R1),
 	END_ROD("endRod", v1_9_R1),
 	DAMAGE_INDICATOR("damageIndicator", v1_9_R1),
-	SWEEP_ATTACK("sweepAttack", v1_9_R1);
+	SWEEP_ATTACK("sweepAttack", v1_9_R1),
+	FALLING_DUST("fallingDust", v1_10_R1);
 
 	private   String            name;
 	private   Minecraft.Version minVersion;
