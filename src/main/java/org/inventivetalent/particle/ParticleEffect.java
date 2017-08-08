@@ -162,7 +162,9 @@ public enum ParticleEffect {
 	END_ROD("endRod", v1_9_R1),
 	DAMAGE_INDICATOR("damageIndicator", v1_9_R1),
 	SWEEP_ATTACK("sweepAttack", v1_9_R1),
-	FALLING_DUST("fallingDust", v1_10_R1);
+	FALLING_DUST("fallingDust", v1_10_R1),
+	SPIT("spit", v1_11_R1),
+	TOTEM("totem", v1_11_R1);
 
 	private   String            name;
 	private   Minecraft.Version minVersion;
