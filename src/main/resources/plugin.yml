@@ -1,4 +1,0 @@
-name: ParticleAPI
-main: org.inventivetalent.particle.ParticlePlugin
-version: ${project.version}
-author: inventivetalent
