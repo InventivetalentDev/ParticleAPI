@@ -1,7 +1,7 @@
 # ParticleAPI
 ParticleAPI fork with 1.13 support, maintained by @CodeMC
 
-## Dev builds:
+## Dev builds
 https://repo.codemc.org/repository/maven-public/
 
 ## Maven dependency
