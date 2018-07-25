@@ -1,7 +1,7 @@
 package org.inventivetalent.particle;
 
-@SuppressWarnings({"unused", "WeakerAccess"})
 public class ParticleException extends RuntimeException {
+
 	public ParticleException() {
 	}
 
