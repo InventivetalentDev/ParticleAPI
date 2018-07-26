@@ -129,8 +129,8 @@ public enum ParticleEffect {
 	DAMAGE_INDICATOR("damageIndicator", BukkitVersion.v1_9_R1),
 	SWEEP_ATTACK("sweepAttack", BukkitVersion.v1_9_R1),
 	FALLING_DUST("fallingDust", BukkitVersion.v1_10_R1),
-	SPIT("spit", BukkitVersion.v1_11_R1),
-	TOTEM("totem", BukkitVersion.v1_11_R1);
+	TOTEM("totem", BukkitVersion.v1_11_R1),
+	SPIT("spit", BukkitVersion.v1_11_R1);
 
 	private String name;
 	private BukkitVersion minVersion;
@@ -237,8 +237,8 @@ public enum ParticleEffect {
 	 * @param range     Maximum visibility range
 	 */
 	public void send(Collection<? extends Player> receivers, Location location, double offsetX, double offsetY, double offsetZ, double speed, int count, double range) {
-		receivers = new ArrayList<>(receivers);
-		receivers.removeIf(player -> !player.getWorld().getName().equals(location.getWorld().getName()));
+		//receivers = new ArrayList<>(receivers);
+		//receivers.removeIf(player -> !player.getWorld().getName().equals(location.getWorld().getName()));
 		send(receivers, location.getX(), location.getY(), location.getZ(), offsetX, offsetY, offsetZ, speed, count, range);
 	}
 
@@ -271,8 +271,8 @@ public enum ParticleEffect {
 	 * @param count     Particle count
 	 */
 	public void send(Collection<? extends Player> receivers, Location location, double offsetX, double offsetY, double offsetZ, double speed, int count) {
-		receivers = new ArrayList<>(receivers);
-		receivers.removeIf(player -> !player.getWorld().getName().equals(location.getWorld().getName()));
+		//receivers = new ArrayList<>(receivers);
+		//receivers.removeIf(player -> !player.getWorld().getName().equals(location.getWorld().getName()));
 		this.particle.send(receivers, location.getX(), location.getY(), location.getZ(), offsetX, offsetY, offsetZ, speed, count);
 	}
 
@@ -313,14 +313,14 @@ public enum ParticleEffect {
 	}
 
 	public void sendColor(Collection<? extends Player> receivers, Location location, Color color) {
-		receivers = new ArrayList<>(receivers);
-		receivers.removeIf(player -> !player.getWorld().getName().equals(location.getWorld().getName()));
+		//receivers = new ArrayList<>(receivers);
+		//receivers.removeIf(player -> !player.getWorld().getName().equals(location.getWorld().getName()));
 		sendColor(receivers, location.getX(), location.getY(), location.getZ(), color);
 	}
 
 	public void sendColor(Collection<? extends Player> receivers, Location location, java.awt.Color color) {
-		receivers = new ArrayList<>(receivers);
-		receivers.removeIf(player -> !player.getWorld().getName().equals(location.getWorld().getName()));
+		//receivers = new ArrayList<>(receivers);
+		//receivers.removeIf(player -> !player.getWorld().getName().equals(location.getWorld().getName()));
 		sendColor(receivers, location.getX(), location.getY(), location.getZ(), color);
 	}
 
